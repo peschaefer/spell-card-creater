@@ -7,7 +7,7 @@ type AppProps = {
     spell: spell
 }
 
-function SpellBox(props: AppProps) {
+function SpellCard(props: AppProps) {
 
     const classList = props.spell.classes.join(", ")
     const components = props.spell.components.raw.split("(")[0]
@@ -27,4 +27,4 @@ function SpellBox(props: AppProps) {
     );
 }
 
-export default SpellBox;
+export default SpellCard;
