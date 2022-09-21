@@ -89,7 +89,7 @@
 .dragon-head{
   z-index: 2;
   position: absolute;
-  top: 90px;
+  top: 13%;
   width: 100px;
   pointer-events: none;
 }
@@ -98,7 +98,7 @@
   z-index: 2;
   position: absolute;
   width: 94px;
-  top: 16.5%;
+  top: 69%;
   left: 74%;
   pointer-events: none;
 }
@@ -106,4 +106,8 @@
 .search-bar{
   margin-top: 54px;
   width: 80%
+}
+
+.search-box{
+  position: relative;
 }
