@@ -50,20 +50,24 @@ function App() {
 
         let possibleSpells: spell[] = []
         //have a dictionary with key value pair, key being spell name, value being levenshtein number. If value is <= max distance then display with those values.
-        if (spellNamedLength.length > 3) {
-            for (let index = 0; index < 3; index++) {
-                for (let choppedSpell of spellNamedLength) {
+        // if (spellNamedLength.length > 3) {
+        for (let index = 0; index < 3; index++) {
+            for (let choppedSpell of spellNamedLength) {
+                if (possibleSpells.length >= 5) {
+                    break;
+                } else {
                     let correspondingSpell = spells[spellNamedLength.indexOf(choppedSpell)]
-                    if (levenshteinDistance(choppedSpell.toLowerCase(), spellName.toLowerCase()) <= index && possibleSpells.length < 5 && !possibleSpells.includes(correspondingSpell)) {
+                    if (levenshteinDistance(choppedSpell.toLowerCase(), spellName.toLowerCase()) <= index && !possibleSpells.includes(correspondingSpell)) {
                         possibleSpells.push(correspondingSpell)
                         console.log(correspondingSpell.name)
                         console.log(levenshteinDistance(choppedSpell.toLowerCase(), spellName.toLowerCase()))
                         spellNamedLength[spellNamedLength.indexOf(choppedSpell)] = "zzzzzzzz"
                     }
                 }
-                setPossibleSpellList(possibleSpells)
             }
+            setPossibleSpellList(possibleSpells)
         }
+        // }
     }, [spellName, allSpellNames])
 
     useEffect(() => {
@@ -82,8 +86,8 @@ function App() {
         setSpellName(e.target.value)
     }
 
-    const handleSpellButton = (selectedSpell: spell) =>{
-        if(chosenSpellList.includes(selectedSpell)){
+    const handleSpellButton = (selectedSpell: spell) => {
+        if (chosenSpellList.includes(selectedSpell)) {
             setChosenSpellList(chosenSpellList.filter(filterSpell => filterSpell !== selectedSpell))
         } else {
             setChosenSpellList([...chosenSpellList, selectedSpell])
@@ -103,18 +107,21 @@ function App() {
                     <img className={"dragon-head"} alt={"dragon"} src={dragonHeadImg}/>
                     <input className={"search-bar"} onChange={handleChange}/>
                     <img className={"dragon-tail"} alt={"dragon-tail"} src={dragonTailImg}/>
-                    {spellName !== "" && possibleSpellList?.map((spell) => {
-                        return (
-                            <div className={"search-box-choice"}>
-                                <p>{spell.name}</p>
-                                <button className={isChosen(spell) ? "chosen-spell" : "spell-choice"} onClick={() => {handleSpellButton(spell)}}>select spell</button>
-                            </div>
-                        )
-                    })}
-                    {chosenSpellList.map((chosenSpell) => {
-                        return <SpellCard spell={chosenSpell}/>
-                    })}
                 </div>
+                {spellName !== "" && possibleSpellList?.map((spell) => {
+                    return (
+                        <div className={"search-box-choice"}>
+                            <p>{spell.name}</p>
+                            <button className={isChosen(spell) ? "chosen-spell" : "spell-choice"} onClick={() => {
+                                handleSpellButton(spell)
+                            }}>select spell
+                            </button>
+                        </div>
+                    )
+                })}
+                {chosenSpellList.map((chosenSpell) => {
+                    return <SpellCard spell={chosenSpell}/>
+                })}
             </div>
         </div>
     );
