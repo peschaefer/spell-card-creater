@@ -11,6 +11,17 @@
 
 .App {
   text-align: center;
+  position: relative;
+  height: 150vh;
+  width: 95vw;
+}
+
+.deck-builder{
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: [start] 50% [middle] 50% [end];
+  grid-template-rows: [start] 15% [input_end] 50% [spells_end] 35% [end];
 }
 
 .spell-box{
@@ -81,15 +92,21 @@
   grid-row-end: class_end;
 }
 
-.test-font{
+.site-title{
   font-family: Draconis, serif;
   font-weight: bold;
+  font-size: 143%;
+  text-align: right;
+  position: absolute;
+  top: 3%;
+  left: 29%;
 }
 
 .dragon-head{
   z-index: 2;
   position: absolute;
-  top: 13%;
+  top: 8%;
+  left: 10%;
   width: 100px;
   pointer-events: none;
 }
@@ -98,16 +115,67 @@
   z-index: 2;
   position: absolute;
   width: 94px;
-  top: 69%;
-  left: 74%;
+  top: 43%;
+  left: 70%;
   pointer-events: none;
 }
 
 .search-bar{
-  margin-top: 54px;
-  width: 80%
+  width: 80%;
+  height: 20%;
+  position: absolute;
+  left: 10%;
+  top: 32.5%;
+  text-align: center;
+  font-size: 20pt;
+  /*font-family: Draconis, serif; FONT TBD*/
 }
 
 .search-box{
   position: relative;
+  grid-column-start: start;
+  grid-column-end: middle;
+  grid-row-start: start;
+  grid-row-end: input_end;
+}
+
+.possible-spell-box{
+  grid-column-start: start;
+  grid-column-end: middle;
+  grid-row-start: input_end;
+  grid-row-end: spells_end;
+  border: 2px solid black;
+}
+
+.selected-spell-box{
+  grid-column-start: middle;
+  grid-column-end: end;
+  grid-row-start: start;
+  grid-row-end: spells_end;
+  border: 2px solid black;
+}
+
+.custom-spell-box{
+  grid-column-start: start;
+  grid-column-end: end;
+  grid-row-start: spells_end;
+  grid-row-end: end;
+  border: 2px solid black;
+}
+
+.possible-spell{
+  position: relative;
+}
+
+.possible-spell:after{
+  content: '';
+  width: 60px;
+  height: 4px;
+  background: gray;
+  position: absolute;
+  bottom: -4px;
+}
+
+.last-possible-spell{
+  border-bottom: none;
 }

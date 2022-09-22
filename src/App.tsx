@@ -98,30 +98,65 @@ function App() {
         return chosenSpellList.includes(selectedSpell)
     }
 
+    const classNamePossibleSpell = (index: number) => {
+        if (possibleSpellList !== undefined && index === possibleSpellList.length - 1) {
+            return "last-possible-spell"
+        }
+        return "possible-spell"
+    }
+
+    //TO DO:
+    //Consider grouping the dragon head and site title to ensure they will not overlap and their distance
+    //does not grow as the website gets wider
+
+    //Create functionality for making custom spells for those that do not appear in the list
+    //possibly look into adding popular spells from Tasha's and Xanthar's and various other books to JSON
+
+    //Research and add local storage usage so the hard-earned spell sheets will not be lost on refresh or form submission
+    //should not be difficult and will make a big difference for the website
+
+    //Add buttons to the spell list to remove spells -- style like radio buttons? may just be an image or could be a css shape
+
+    //Figure out how to create borders that mimic the dnd character sheet -- Riley?
+
+    //Look into a javascript PDF library for the submission page
+
+    //Baddabing badda boom
+
+
     return (
         <div className="App">
             {/*<p>{allSpellNamesLengthTyped}</p>*/}
             <div className={"deck-builder"}>
-                <h1 className={"test-font"}>SPELL CARD CREATOR</h1>
                 <div className={"search-box"}>
+                    <h1 className={"site-title"}>SPELL CARD CREATOR</h1>
                     <img className={"dragon-head"} alt={"dragon"} src={dragonHeadImg}/>
                     <input className={"search-bar"} onChange={handleChange}/>
                     <img className={"dragon-tail"} alt={"dragon-tail"} src={dragonTailImg}/>
                 </div>
-                {spellName !== "" && possibleSpellList?.map((spell) => {
-                    return (
-                        <div className={"search-box-choice"}>
-                            <p>{spell.name}</p>
-                            <button className={isChosen(spell) ? "chosen-spell" : "spell-choice"} onClick={() => {
-                                handleSpellButton(spell)
-                            }}>select spell
-                            </button>
-                        </div>
-                    )
-                })}
-                {chosenSpellList.map((chosenSpell) => {
-                    return <SpellCard spell={chosenSpell}/>
-                })}
+                <div className={"possible-spell-box"}>
+                    {spellName !== "" && possibleSpellList?.map((spell, index) => {
+                        return (
+                            <div className={classNamePossibleSpell(index)}>
+                                <p>{spell.name}</p>
+                                <button className={isChosen(spell) ? "chosen-spell" : "spell-choice"} onClick={() => {
+                                    handleSpellButton(spell)
+                                }}>select spell
+                                </button>
+                            </div>
+                        )
+                    })}
+                </div>
+                <div className={"selected-spell-box"}>
+                    {chosenSpellList.map((chosenSpell) => {
+                        return (
+                            <p>{chosenSpell.name}</p>
+                        )
+                    })}
+                </div>
+                <div className={"custom-spell-box"}>
+
+                </div>
             </div>
         </div>
     );
