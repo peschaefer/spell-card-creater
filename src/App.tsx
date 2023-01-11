@@ -106,6 +106,10 @@ function App() {
         return "possible-spell"
     }
 
+    const addCustomSpell = (newSpell: spell) => {
+        setChosenSpellList([...chosenSpellList,newSpell])
+    }
+
     //TO DO:
     //Consider grouping the dragon head and site title to ensure they will not overlap and their distance
     //does not grow as the website gets wider
@@ -125,6 +129,8 @@ function App() {
     //Baddabing badda boom
 
 
+    // @ts-ignore
+    // @ts-ignore
     return (
         <div className="App">
             {/*<p>{allSpellNamesLengthTyped}</p>*/}
@@ -156,7 +162,7 @@ function App() {
                     })}
                 </div>
                 <div className={"custom-spell-box"}>
-                    {/*<CustomCardBox/>*/}
+                    <CustomCardBox onSubmit={addCustomSpell}/>
                 </div>
             </div>
         </div>

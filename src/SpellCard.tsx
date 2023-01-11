@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-import spells from "./spells.json"
+import React, {useEffect, useState} from 'react';
 import type {spell} from "./types"
 import './App.css';
 
@@ -10,7 +9,21 @@ type AppProps = {
 function SpellCard(props: AppProps) {
 
     const classList = props.spell.classes.join(", ")
-    const components = props.spell.components.raw.split("(")[0]
+    const [components,setComponents] = useState<string[]>()
+
+    useEffect(()=>{
+            let temp = []
+            if (props.spell.components.verbal){
+                temp.push("V")
+            }
+            if (props.spell.components.somatic){
+                temp.push("S")
+            }
+            if (props.spell.components.material){
+                temp.push("M")
+            }
+            setComponents(temp)
+    },[])
 
     return (
         <div className={"spell-box"} style={{display: "grid"}}>
