@@ -5,6 +5,7 @@ import './App.css';
 import SpellCard from "./SpellCard";
 import dragonHeadImg from "./Assets/dragon-head.png"
 import dragonTailImg from "./Assets/dragon-tail.png"
+import CustomCardBox from "./CustomCardBox";
 
 function App() {
 
@@ -155,7 +156,7 @@ function App() {
                     })}
                 </div>
                 <div className={"custom-spell-box"}>
-
+                    {/*<CustomCardBox/>*/}
                 </div>
             </div>
         </div>
