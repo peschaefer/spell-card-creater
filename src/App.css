@@ -105,7 +105,7 @@
 .dragon-head{
   z-index: 2;
   position: absolute;
-  top: 8%;
+  top: 13%;
   left: 10%;
   width: 100px;
   pointer-events: none;
@@ -115,7 +115,7 @@
   z-index: 2;
   position: absolute;
   width: 94px;
-  top: 43%;
+  top: 44%;
   left: 70%;
   pointer-events: none;
 }
@@ -153,6 +153,23 @@
   grid-row-start: start;
   grid-row-end: spells_end;
   border: 2px solid black;
+}
+
+.selected-spell-box p{
+  border-bottom: 1px solid black;
+  margin: 10px 20px 0 10px;
+  padding-bottom: 5px;
+}
+
+.individual-spell{
+  display: grid;
+  grid-template-columns: 5% 95%;
+}
+
+.individual-spell svg{
+  height: 20px;
+  padding-top: 10px;
+  padding-left: 10px;
 }
 
 .custom-spell-box{

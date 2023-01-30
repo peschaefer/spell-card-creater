@@ -14,7 +14,6 @@ function App() {
     const [chosenSpellList, setChosenSpellList] = useState<spell[]>([])
     const [possibleSpellList, setPossibleSpellList] = useState<spell[]>()
     const [allSpellNames, setAllSpellNames] = useState<string[]>()
-    const [allSpellNamesLengthTyped, setAllSpellNamesLengthTyped] = useState<string[]>()
 
     const levenshteinDistance = (str1 = '', str2 = '') => {
         const track = Array(str2.length + 1).fill(null).map(() =>
@@ -56,14 +55,13 @@ function App() {
             for (let choppedSpell of spellNamedLength) {
                 if (possibleSpells.length >= 5) {
                     break;
-                } else {
-                    let correspondingSpell = spells[spellNamedLength.indexOf(choppedSpell)]
-                    if (levenshteinDistance(choppedSpell.toLowerCase(), spellName.toLowerCase()) <= index && !possibleSpells.includes(correspondingSpell)) {
-                        possibleSpells.push(correspondingSpell)
-                        console.log(correspondingSpell.name)
-                        console.log(levenshteinDistance(choppedSpell.toLowerCase(), spellName.toLowerCase()))
-                        spellNamedLength[spellNamedLength.indexOf(choppedSpell)] = "zzzzzzzz"
-                    }
+                }
+                let correspondingSpell = spells[spellNamedLength.indexOf(choppedSpell)]
+                if (levenshteinDistance(choppedSpell.toLowerCase(), spellName.toLowerCase()) <= index && !possibleSpells.includes(correspondingSpell)) {
+                    possibleSpells.push(correspondingSpell)
+                    console.log(correspondingSpell.name)
+                    console.log(levenshteinDistance(choppedSpell.toLowerCase(), spellName.toLowerCase()))
+                    spellNamedLength[spellNamedLength.indexOf(choppedSpell)] = "zzzzzzzz"
                 }
             }
             setPossibleSpellList(possibleSpells)
@@ -107,7 +105,7 @@ function App() {
     }
 
     const addCustomSpell = (newSpell: spell) => {
-        setChosenSpellList([...chosenSpellList,newSpell])
+        setChosenSpellList([...chosenSpellList, newSpell])
     }
 
     //TO DO:
@@ -157,7 +155,10 @@ function App() {
                 <div className={"selected-spell-box"}>
                     {chosenSpellList.map((chosenSpell) => {
                         return (
-                            <p>{chosenSpell.name}</p>
+                            <div className="individual-spell">
+                                <svg> <circle cx="10" cy="10" r="7" strokeWidth="1.5" fill="none" stroke="black"></circle> </svg>
+                                <p>{chosenSpell.name}</p>
+                            </div>
                         )
                     })}
                 </div>
